@@ -1,0 +1,68 @@
+.add-new {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	z-index: 10;
+
+  @include media-breakpoint-down(sm) {
+		bottom: 1em;
+		right: 1em;
+	}
+
+	button {
+		background: $accent;
+		color: #fff;
+		box-shadow: 0 0 12px 0 rgba(0,0,0,0.35);
+
+		width: 6em;
+		height: 6em;
+		border-radius: 50%;
+
+		float: right;
+		position: relative;
+		z-index: 1;
+
+		&:hover, &.active {
+			background: lighten($accent, 5%);
+			box-shadow: none;
+		}
+	}
+
+	&__choice {
+
+      opacity: 0;
+      transition: $transition-base;
+
+		li {
+			margin: 1rem 0;
+
+			transform: translateY(100%);
+			transition: $transition-base;
+		}
+
+		a {
+			display: block;
+			padding: 1rem;
+			background: $accent;
+			border-radius: 12px;
+			text-align: center;
+			font-weight: 700;
+
+			color: #fff;
+			text-decoration: none;
+
+			&:hover, &:active, &:focus {
+				background: lighten($accent, 5%);
+			}
+		}
+
+		&.opened {
+          opacity: 1;
+
+          li {
+            transform: none;
+          }
+        }
+	}
+
+}

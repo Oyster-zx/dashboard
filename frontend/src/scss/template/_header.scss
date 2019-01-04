@@ -1,0 +1,46 @@
+@import "menu-btn";
+
+header {
+	width: 100%;
+	height: $header-height;
+
+	position: fixed;
+	background: transparent;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	z-index: 10;
+	padding: 0 2em;
+
+	transition: $transition-base;
+
+  @include media-breakpoint-down(sm) {
+		//background: rgba(#fff, 0.8);
+		padding: 1.5em 2em;
+		height: auto;
+	}
+
+	&.nav-opened {
+		padding-left: calc(#{$nav-width} + 2em);
+
+      @include media-breakpoint-down(sm) {
+			padding-left: 2em;
+			justify-content: flex-end;
+
+			.link, .settings {
+				display: none;
+			}
+		}
+	}
+
+	.clock {
+		font-size: 3.4em;
+		font-weight: 300;
+
+        @include media-breakpoint-down(sm) {
+			display: none;
+		}
+	}
+}

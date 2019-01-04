@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico&subset=cyrillic,latin-ext');
+
+
+// colors
+$primary: #f8bbd0;
+$secondary: #607D8B;
+$dark: #151515;
+$light: #fffff0;
+$accent: #ff5722;
+
+// fonts
+$font-secondary: 'Pacifico', cursive;
+$fa-font-path: "../fonts";
+
+// bootstrap overrides
+$body-bg: $secondary;
+$body-color: $dark;
+
+
+// app
+$header-height: 4em;
+$nav-width: 420px;
+
+// Note
+$note-bg: $light;
+$note-w: 320px;
+$note-h: 320px;
+
+// Todos
+$todo-bg: #fff;
+$todo-w: 501px;
+$todo-h: 520px;
+
+// Counter
+$counter-bg: $secondary;
+$counter-w: 360px;
