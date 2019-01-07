@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import Note from "./Note";
+import Counter from "./Counter";
 
 class AddNew extends Component {
 
@@ -20,22 +22,14 @@ class AddNew extends Component {
 
     render() {
 
-        let test;
-        if (this.state.active) {
-              this.class += 'je';
-        } else {
-            this.class += 'not';
-        }
-
         return (
             <div className="add-new">
-                {test}
                 <div className={`add-new__choice${this.state.active ? ' opened' : ''}`}>
 
                     <ul>
-                        <li><a href="" data-target="note">Note</a></li>
-                        <li><a href="" data-target="todo">Todo</a></li>
-                        <li><a href="" data-target="counter">Counter</a></li>
+                        <li><a href="#" onClick={this.props.addNote}>Note</a></li>
+                        <li><a href="#" onClick={this.props.addTodo}>Todo</a></li>
+                        <li><a href="#" onClick={this.props.addCounter}>Counter</a></li>
                     </ul>
                 </div>
                 <button onClick={this.handleClick}><i className="fa fa-plus fa-2x"></i></button>
