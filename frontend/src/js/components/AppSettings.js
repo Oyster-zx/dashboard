@@ -30,12 +30,12 @@ class AppSettings extends Component {
     render() {
         return (
             <div className="settings">
-                <a onClick={this.handleClick}
+                <button onClick={this.handleClick}
                    className={`open-settings-menu${this.state.active ? ' menu-opened' : ''}`}>
                     <span></span>
                     <span></span>
                     <span></span>
-                </a>
+                </button>
                 <div className={`settings-menu${this.state.active ? ' d-block' : ''}`}>
                     <div>
                         <h2>App theme</h2>
