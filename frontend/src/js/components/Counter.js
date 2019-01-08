@@ -7,6 +7,7 @@ class Counter extends Component {
         super(props);
 
         this.state = {
+            key: this.props.widgetKey,
             title: "Event name",
             deadline: new Date(),
             daysLeft: 0
@@ -32,7 +33,7 @@ class Counter extends Component {
         return (
             <div className="module counter">
                 <div className="wrapper">
-                    <input type="text" onChange={this.changeTitle} placeholder={this.state.title}/>
+                    <input type="text" className="module-title" onChange={this.changeTitle} placeholder={this.state.title}/>
                     <DatePicker
                         onChange={this.changeDate}
                         value={this.state.deadline}
@@ -40,7 +41,7 @@ class Counter extends Component {
                         minDate={new Date()}/>
                         <div className="days-left"><span>{this.state.daysLeft}</span>days left</div>
                 </div>
-                <i className="fa fa-times-circle fa-lg"></i>
+                <button className="fa fa-times-circle fa-lg remove-btn" onClick={() => this.props.deleteWidget(this.state.key)} />
             </div>
         );
     }

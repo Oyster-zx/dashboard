@@ -7,7 +7,6 @@ import Header from "./js/components/Header";
 import Dashboard from "./js/components/Dashboard";
 import User from "./js/components/User";
 
-ReactDOM.render(<Header />, document.getElementById('header'));
 ReactDOM.render(<Dashboard User={new User(1, 'Nasta')}/>, document.getElementById('root'));
 // ReactDOM.render(<App />, document.getElementById('root'));
 

@@ -7,7 +7,14 @@
 	width: $note-w;
 	height: $note-h;
 
-	padding: 4em 2em 2em;
+	padding: 2em;
 
 	box-shadow: 0 0 12px 0 rgba(0,0,0,0.35);
+
+  textarea {
+    width: calc(100%);
+    height: calc(100%);
+    background: transparent;
+    border: none;
+  }
 }
