@@ -16,6 +16,14 @@ header {
 
 	transition: $transition-base;
 
+  &.app-theme-dark {
+    color: #fff;
+
+    span {
+      background: #fff !important;
+    }
+  }
+
   @include media-breakpoint-down(sm) {
 		//background: rgba(#fff, 0.8);
 		padding: 1.5em 2em;

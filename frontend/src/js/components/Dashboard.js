@@ -68,12 +68,13 @@ class Dashboard extends Component {
     }
 
     render() {
-        ReactDOM.render(<Header toggleTheme={this.toggleTheme}/>, document.getElementById('header'));
-
+        const appTheme = this.state.lightTheme ? ' app-theme-light' : 'app-theme-dark';
         const listItems = this.state.widgets.map(this.createTasks);
 
+        ReactDOM.render(<Header appTheme={appTheme} toggleTheme={this.toggleTheme}/>, document.getElementById('header'));
+
         return (
-            <main id="dashboard" className={`app-background-default ${this.state.lightTheme ? ' app-theme-light' : 'app-theme-dark'}`}>
+            <main id="dashboard" className={`app-background-default ${appTheme}`}>
                 <div className="user-info d-flex">
                     <h3 className="mb-0">Hello, {this.props.User.getName()}!</h3>
                     <button className='btn btn-secondary btn-sm ml-4'>Log Out</button>

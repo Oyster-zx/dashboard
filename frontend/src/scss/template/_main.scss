@@ -1,7 +1,5 @@
 main {
 
-	background: url('../img/bg.png');
-
 	background-size: cover !important;
 	background-position: 50% !important;
 
@@ -13,6 +11,14 @@ main {
 	white-space: nowrap;
 
 	padding-right: 8em;
+
+  &.app-theme-light {
+    background: url('../img/bg.png');
+  }
+  &.app-theme-dark {
+    background: url('../img/bg-dark.jpg');
+    color: #fff;
+  }
 
   @include media-breakpoint-down(sm) {
 		padding: 6em 1em;
