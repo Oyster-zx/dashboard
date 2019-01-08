@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans:300,400,500,700');
 @import url('https://fonts.googleapis.com/css?family=Pacifico&subset=cyrillic,latin-ext');
-
 
 // colors
 $primary: #f8bbd0;
@@ -9,12 +9,14 @@ $light: #fffff0;
 $accent: #ff5722;
 
 // fonts
+$font-family-base: 'Open Sans', sans-serif;
 $font-secondary: 'Pacifico', cursive;
 $fa-font-path: "../fonts";
 
 // bootstrap overrides
 $body-bg: $secondary;
 $body-color: $dark;
+$h2-font-size: 1.4rem;
 
 
 // app

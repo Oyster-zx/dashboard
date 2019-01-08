@@ -12,7 +12,7 @@ class Header extends Component {
                     <span></span>
                 </button>
 
-                <AppSettings/>
+                <AppSettings toggleTheme={this.props.toggleTheme}/>
             </header>
         );
     }

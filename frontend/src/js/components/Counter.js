@@ -33,7 +33,7 @@ class Counter extends Component {
         return (
             <div className="module counter">
                 <div className="wrapper">
-                    <input type="text" className="module-title" onChange={this.changeTitle} placeholder={this.state.title}/>
+                    <input type="text" className="module-title" onChange={this.changeTitle} placeholder={this.state.title} autoFocus="true"/>
                     <DatePicker
                         onChange={this.changeDate}
                         value={this.state.deadline}
