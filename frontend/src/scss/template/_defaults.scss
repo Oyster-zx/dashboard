@@ -27,8 +27,14 @@ button {
 }
 
 .btn-transparent {
-  background: transparent;
-  border: none;
+  background-color: transparent;
+  border-color: transparent;
+
+  &:hover, &:active, &:focus {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
 }
 
 .user-info {

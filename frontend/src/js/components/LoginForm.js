@@ -71,7 +71,8 @@ window.onSignIn = async (googleUser) =>{
     let profile = googleUser.getBasicProfile();
     let user = new User(profile.getId(), profile.getName(), profile.getImageUrl(), profile.getEmail());
 
-    let response = await fetch(`${Constants.SERVER}/dashboard/read`, {
+    let response;
+    await fetch(`${Constants.SERVER}/dashboard/read`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -81,8 +82,15 @@ window.onSignIn = async (googleUser) =>{
             user_name: user.getName(),
             password: user.getEmail()
         })
-    });
-    const dashboard = await response.json();
+    })
+        .then(res => response = res)
+        .catch(error => alert(error));
 
-    ReactDOM.render(<Dashboard user={user} dashboard={dashboard}/>, document.getElementById('root'));
+    let dashboard;
+    if(response != null) {
+        dashboard = await response.json();
+        console.log(dashboard);
+        ReactDOM.render(<Dashboard user={user} dashboard={dashboard}/>, document.getElementById('root'));
+    }
+
 };

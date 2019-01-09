@@ -79,7 +79,7 @@ class Todo extends Component {
         return (
             <div id="todo-4270" className="module todo" draggable="true">
                 <div className="wrapper">
-                    <input type="text" className="module-title mb-4" onChange={this.changeTitle} placeholder={this.state.title} autoFocus="true"/>
+                    <input type="text" className="module-title mb-4" onChange={this.changeTitle} placeholder={this.state.title} autoFocus={true}/>
                     <ul className="items">{listItems}</ul>
                     <form className="todo-new" onSubmit={this.addItem}>
                         <input type="text" name="new-todo" placeholder={this.state.currentItem.text}/>
