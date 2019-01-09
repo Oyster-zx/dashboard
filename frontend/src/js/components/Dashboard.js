@@ -6,6 +6,10 @@ import Todo from "./Todo";
 import ReactDOM from "react-dom";
 import Header from "./Header";
 import Constants from "./Constants";
+import App from "../App";
+import AppSettings from "./AppSettings";
+
+let renderHeader = true;
 
 class Dashboard extends Component {
 
@@ -42,15 +46,8 @@ class Dashboard extends Component {
         this.updateStateWithWidget(newNote);
     }
 
-    addNote = async () => {
-        const key = Math.random();
-        const newNote = {
-            key: key,
-            template: <Note widgetKey={key} deleteWidget={this.deleteWidget} text={""}/>,
-            type: 'Note'
-        };
-
-        let response = await fetch(`${Constants.SERVER}/dashboard/addNote`, {
+    sendData = async (newWidget) => {
+        let response = await fetch(`${Constants.SERVER}/dashboard/add${newWidget.type}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -63,10 +60,20 @@ class Dashboard extends Component {
             })
         });
         let body = await response.json();
-        newNote.id = body.id;
-        this.updateStateWithWidget(newNote);
+        newWidget.id = body.id;
+        this.updateStateWithWidget(newWidget);
     }
 
+    addNote = async () => {
+        const key = Math.random();
+        const newNote = {
+            key: key,
+            template: <Note widgetKey={key} deleteWidget={this.deleteWidget} text={""}/>,
+            type: 'Note'
+        };
+
+       this.sendData(newNote);
+    }
 
     addCounter = () => {
         const key = Math.random();
@@ -75,17 +82,19 @@ class Dashboard extends Component {
             template: <Counter widgetKey={key} deleteWidget={this.deleteWidget}/>,
             type: 'Counter'
         };
-        this.updateStateWithWidget(newCounter);
 
-        // todo send to backend
+        this.sendData(newCounter);
     }
 
     addTodo = () => {
         const key = Math.random();
-        let newTodo = {key: key, template: <Todo widgetKey={key} deleteWidget={this.deleteWidget}/>, type: 'Todo'};
-        this.updateStateWithWidget(newTodo);
+        let newTodo = {
+            key: key,
+            template: <Todo widgetKey={key} deleteWidget={this.deleteWidget}/>,
+            type: 'Todo'
+        };
 
-        // todo send to backend
+        this.sendData(newTodo);
     }
 
     createTasks = (item) => {
@@ -128,23 +137,47 @@ class Dashboard extends Component {
         })
     }
 
+    logOut = () => {
+        // var auth2 = gapi.auth2.getAuthInstance();
+        // auth2.signOut().then(function () {
+        //     console.log('User signed out.');
+        // });
+        // console.log(document.cookie)
+        //
+        // var res = document.cookie;
+        // var multiple = res.split(";");
+        // for(var i = 0; i < multiple.length; i++) {
+        //     var key = multiple[i].split("=");
+        //     document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+        // }
+        //
+        // console.log(document.cookie)
+        //
+        // ReactDOM.render(<div></div>, document.getElementById('header'));
+        ReactDOM.render(<App/>, document.getElementById('root'));
+        // return (
+            {/*<App/>*/}
+        // )
+    }
+
     render() {
         const appTheme = this.state.lightTheme ? ' app-theme-light' : 'app-theme-dark';
         const listItems = this.state.widgets.map(this.createTasks);
-        ReactDOM.render(<Header appTheme={appTheme}
-                                toggleTheme={this.toggleTheme}/>, document.getElementById('header'));
 
         return (
+            <div>
+            <Header appTheme={appTheme} toggleTheme={this.toggleTheme}/>
             <main id="dashboard" className={`app-background-default ${appTheme}`}>
                 <div className="user-info d-flex">
                     <h3 className="mb-0">Hello, {this.props.user.getName()}!</h3>
-                    <button className='btn btn-secondary btn-sm ml-4'>Log Out</button>
+                    <button className='btn btn-secondary btn-sm ml-4' onClick={this.logOut}>Log Out</button>
                 </div>
 
                 <ul className="d-flex">{listItems}</ul>
 
                 <AddNew addNote={this.addNote} addCounter={this.addCounter} addTodo={this.addTodo}/>
             </main>
+            </div>
         );
     }
 }

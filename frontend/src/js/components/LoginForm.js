@@ -55,8 +55,9 @@ class LoginForm extends Component {
                         </FormGroup>
                         <div className="d-flex flex-column align-items-center">
                             <Button color="primary" type="submit">Login</Button>
-                            <p className={'my-3'}>or</p>
-                            <Button className="g-signin2 btn-transparent" data-onsuccess="onSignIn">Login with Google</Button>
+                            {/*<p className={'my-3'}>or</p>*/}
+
+                            <Button className="g-signin2 btn-transparent mt-3" data-onsuccess="onSignIn">Login with Google</Button>
                         </div>
                     </Form>
                 </div>
