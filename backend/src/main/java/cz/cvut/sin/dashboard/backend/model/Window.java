@@ -1,6 +1,7 @@
 package cz.cvut.sin.dashboard.backend.model;
 
 import javax.persistence.*;
+
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
@@ -20,6 +21,9 @@ public class Window {
 
     @OneToMany(mappedBy = "window", cascade = CascadeType.ALL)
     private Set<Note> notes;
+
+    @OneToMany(mappedBy = "window", cascade = CascadeType.ALL)
+    private Set<DayCounter> dayCounters;
 
     public Long getId() {
         return id;
@@ -41,13 +45,22 @@ public class Window {
         return notes;
     }
 
-    public void addNote(Note note){
+    public void addNote(Note note) {
         note.setWindow(this);
         notes.add(note);
     }
 
-    public void removeNote(Long noteId){
+    public void addDayCounter(DayCounter dayCounter) {
+        dayCounter.setWindow(this);
+        dayCounters.add(dayCounter);
+    }
+
+    public void removeNote(Long noteId) {
         notes = notes.stream().filter(note -> !note.getId().equals(noteId)).collect(Collectors.toSet());
+    }
+
+    public void removeDayCounter(Long dayCounterId) {
+        dayCounters = dayCounters.stream().filter(dayCounter -> !dayCounter.getId().equals(dayCounterId)).collect(Collectors.toSet());
     }
 
     public void setNotes(Set<Note> notes) {
@@ -56,8 +69,10 @@ public class Window {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Window window = (Window) o;
         return Objects.equals(id, window.id) &&
                 Objects.equals(dashboard, window.dashboard);

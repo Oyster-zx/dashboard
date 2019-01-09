@@ -47,8 +47,16 @@ public class Dashboard {
         getWindows().iterator().next().addNote(note);
     }
 
+    public void addDayCounter(DayCounter dayCounter){
+        getWindows().iterator().next().addDayCounter(dayCounter);
+    }
+
     public void removeNote(Long noteId){
         getWindows().iterator().next().removeNote(noteId);
+    }
+
+    public void removeDayCounter(Long dayCounterId){
+        getWindows().iterator().next().removeDayCounter(dayCounterId);
     }
 
     @Override

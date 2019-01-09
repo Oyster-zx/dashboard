@@ -1,13 +1,16 @@
 package cz.cvut.sin.dashboard.backend.service;
 
 import cz.cvut.sin.dashboard.backend.dao.DashboardRepository;
+import cz.cvut.sin.dashboard.backend.dao.DayCounterRepository;
 import cz.cvut.sin.dashboard.backend.dao.NoteRepository;
 import cz.cvut.sin.dashboard.backend.model.Dashboard;
+import cz.cvut.sin.dashboard.backend.model.DayCounter;
 import cz.cvut.sin.dashboard.backend.model.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.logging.Logger;
 
 @Service
@@ -20,6 +23,9 @@ public class DashboardServiceImpl implements DashboardService{
 
     @Autowired
     private NoteRepository noteRepository;
+
+    @Autowired
+    private DayCounterRepository dayCounterRepository;
 
     @Override
     public Dashboard getDashboard(String userName, String userPassword) {
@@ -39,6 +45,24 @@ public class DashboardServiceImpl implements DashboardService{
     public void removeNote(Long noteId) {
         try {
             noteRepository.deleteById(noteId);
+        }catch (EmptyResultDataAccessException e){
+            logger.info(e.getLocalizedMessage());
+        }
+    }
+
+    @Override
+    public DayCounter addDayCounter(Dashboard dashboard, String title, Date date) {
+        DayCounter dayCounter = new DayCounter();
+        dayCounter.setTitle(title);
+        dayCounter.setDate(date);
+        dayCounterRepository.save(dayCounter);
+        return dayCounter;
+    }
+
+    @Override
+    public void removeDayCounter(Long dayCounterId) {
+        try {
+            dayCounterRepository.deleteById(dayCounterId);
         }catch (EmptyResultDataAccessException e){
             logger.info(e.getLocalizedMessage());
         }
