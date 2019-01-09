@@ -67,6 +67,14 @@ public class Window {
         this.notes = notes;
     }
 
+    public Set<DayCounter> getDayCounters() {
+        return dayCounters;
+    }
+
+    public void setDayCounters(Set<DayCounter> dayCounters) {
+        this.dayCounters = dayCounters;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

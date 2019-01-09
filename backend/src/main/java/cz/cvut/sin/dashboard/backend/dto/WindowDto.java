@@ -11,12 +11,15 @@ public class WindowDto {
     @JsonProperty("notes")
     private Set<NoteDto> notes;
 
+    @JsonProperty("counter")
+    private Set<DayCounterDto> dayCounters;
+
 
     public static WindowDto fromEntity(Window window){
 
         WindowDto dto = new WindowDto();
         dto.setNotes(window.getNotes().stream().map(NoteDto::fromEntity).collect(Collectors.toSet()));
-
+        dto.setDayCounters(window.getDayCounters().stream().map(DayCounterDto::fromEntity).collect(Collectors.toSet()));
         return dto;
     }
 
@@ -26,5 +29,13 @@ public class WindowDto {
 
     public void setNotes(Set<NoteDto> notes) {
         this.notes = notes;
+    }
+
+    public Set<DayCounterDto> getDayCounters() {
+        return dayCounters;
+    }
+
+    public void setDayCounters(Set<DayCounterDto> dayCounters) {
+        this.dayCounters = dayCounters;
     }
 }

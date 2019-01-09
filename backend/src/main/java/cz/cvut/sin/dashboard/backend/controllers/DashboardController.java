@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -67,7 +68,7 @@ public class DashboardController {
         String userName = (String) payload.get("user_name");
         String password = (String) payload.get("password");
         String title = (String) payload.get("title");
-        Date date = new Date(Date.parse((String) payload.get("date")));
+        Date date = new Date(Calendar.getInstance().getTime().getTime());
         logger.info(userName + " added day counter");
         Dashboard dashboard = dashboardService.getDashboard(userName, password);
         DayCounter dayCounter = dashboardService.addDayCounter(dashboard, title, date);
