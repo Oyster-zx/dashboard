@@ -8,8 +8,8 @@ class Counter extends Component {
 
         this.state = {
             key: this.props.widgetKey,
-            title: "Event name",
-            deadline: new Date(),
+            title: this.props.title,
+            deadline: new Date(this.props.date),
             daysLeft: 0
         }
     }

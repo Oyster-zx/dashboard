@@ -27,6 +27,9 @@ class Dashboard extends Component {
         this.props.dashboard.windows[0].notes.map(note => {
             this.addNoteFromDb(note.id, note.text);
         });
+        this.props.dashboard.windows[0].counters.map(counter => {
+            this.addCounterFromDb(counter.id, counter.title, counter.date);
+        });
     }
 
     updateStateWithWidget = (widget) => {
@@ -46,6 +49,17 @@ class Dashboard extends Component {
         this.updateStateWithWidget(newNote);
     }
 
+    addCounterFromDb = (id, title, date) => {
+        const key = Math.random();
+        const newCounter = {
+            key: key,
+            template: <Counter widgetKey={key} deleteWidget={this.deleteWidget} title={title} date={date}/>,
+            type: 'Note',
+            id: id
+        };
+        this.updateStateWithWidget(newCounter);
+    }
+
     sendData = async (newWidget) => {
         let response = await fetch(`${Constants.SERVER}/dashboard/add${newWidget.type}`, {
             method: 'POST',
@@ -56,7 +70,9 @@ class Dashboard extends Component {
             }, body: JSON.stringify({
                 user_name: this.props.user.getName(),
                 password: this.props.user.getEmail(),
-                text: ""
+                text: "",
+                date: new Date().toDateString(),
+                title: ""
             })
         });
         let body = await response.json();
@@ -79,7 +95,7 @@ class Dashboard extends Component {
         const key = Math.random();
         const newCounter = {
             key: key,
-            template: <Counter widgetKey={key} deleteWidget={this.deleteWidget}/>,
+            template: <Counter widgetKey={key} deleteWidget={this.deleteWidget} title={"Event name"} date={new Date().toDateString()}/>,
             type: 'Counter'
         };
 
@@ -138,26 +154,10 @@ class Dashboard extends Component {
     }
 
     logOut = () => {
-        // var auth2 = gapi.auth2.getAuthInstance();
-        // auth2.signOut().then(function () {
-        //     console.log('User signed out.');
-        // });
-        // console.log(document.cookie)
-        //
-        // var res = document.cookie;
-        // var multiple = res.split(";");
-        // for(var i = 0; i < multiple.length; i++) {
-        //     var key = multiple[i].split("=");
-        //     document.cookie = key[0]+" =; expires = Thu, 01 Jan 1970 00:00:00 UTC";
-        // }
-        //
-        // console.log(document.cookie)
-        //
-        // ReactDOM.render(<div></div>, document.getElementById('header'));
-        ReactDOM.render(<App/>, document.getElementById('root'));
-        // return (
-            {/*<App/>*/}
-        // )
+        var auth2 = window.gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
     }
 
     render() {
