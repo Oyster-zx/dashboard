@@ -10,7 +10,7 @@ class Note extends Component {
 
         this.state = {
             key: this.props.widgetKey,
-            text: "Add some text..."
+            text: this.props.text
         }
     }
 
@@ -24,7 +24,7 @@ class Note extends Component {
     render() {
         return (
             <div className={'module note'}>
-                <textarea className='note-text' onChange={this.changeText} placeholder={this.state.text} autoFocus="true"/>
+                <textarea className='note-text' onChange={this.changeText} value={this.state.text} autoFocus="true"/>
                 <button className="fa fa-times-circle fa-lg remove-btn" onClick={() => this.props.deleteWidget(this.state.key)} />
             </div>
         );

@@ -3,7 +3,7 @@ package cz.cvut.sin.dashboard.backend.dao;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import cz.cvut.sin.dashboard.backend.model.DashboardUser;
+import cz.cvut.sin.dashboard.backend.model.User;
 
 /**
  * TODO ikuzevanov popis
@@ -13,5 +13,5 @@ import cz.cvut.sin.dashboard.backend.model.DashboardUser;
  * @author ikuzevanov on 2018-12-21
  */
 @Repository
-public interface UserRepository extends CrudRepository<DashboardUser, Long>{
+public interface UserRepository extends CrudRepository<User, Long>{
 }

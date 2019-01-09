@@ -1,11 +1,6 @@
 package cz.cvut.sin.dashboard.backend.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 
@@ -17,12 +12,11 @@ import lombok.Data;
  * @author ikuzevanov on 2018-12-19
  */
 @Entity
-@Table(name = "dashboard_user")
-public class DashboardUser {
+@Table(name = "db_user")
+public class User {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @SequenceGenerator(name = "increment", sequenceName = "user_id_sequence")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
     private String name;
@@ -31,10 +25,10 @@ public class DashboardUser {
     @Column
     private String password;
 
-    public DashboardUser() {
+    public User() {
     }
 
-    public DashboardUser(String name, String email, String password) {
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;

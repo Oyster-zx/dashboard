@@ -5,6 +5,7 @@ import Logo from "./Logo";
 import App from "../App";
 import Dashboard from "./Dashboard";
 import User from "./User";
+import Constants from "./Constants";
 
 class LoginForm extends Component {
 
@@ -66,9 +67,22 @@ class LoginForm extends Component {
 
 export default LoginForm;
 
-window.onSignIn = function onSignIn(googleUser) {
+window.onSignIn = async (googleUser) =>{
     let profile = googleUser.getBasicProfile();
     let user = new User(profile.getId(), profile.getName(), profile.getImageUrl(), profile.getEmail());
 
-    ReactDOM.render(<Dashboard User={user}/>, document.getElementById('root'));
+    let response = await fetch(`${Constants.SERVER}/dashboard/read`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+        }, body: JSON.stringify({
+            user_name: user.getName(),
+            password: user.getEmail()
+        })
+    });
+    const dashboard = await response.json();
+
+    ReactDOM.render(<Dashboard user={user} dashboard={dashboard}/>, document.getElementById('root'));
 };

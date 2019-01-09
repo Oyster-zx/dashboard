@@ -7,8 +7,8 @@ import Header from "./js/components/Header";
 import Dashboard from "./js/components/Dashboard";
 import User from "./js/components/User";
 
-ReactDOM.render(<Dashboard User={new User(1, 'Nasta')}/>, document.getElementById('root'));
-// ReactDOM.render(<App />, document.getElementById('root'));
+//ReactDOM.render(<Dashboard User={new User(1, 'Nasta')}/>, document.getElementById('root'));
+ ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
