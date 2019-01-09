@@ -55,6 +55,7 @@ public class DashboardServiceImpl implements DashboardService{
         DayCounter dayCounter = new DayCounter();
         dayCounter.setTitle(title);
         dayCounter.setDate(date);
+        dashboard.addDayCounter(dayCounter);
         dayCounterRepository.save(dayCounter);
         return dayCounter;
     }

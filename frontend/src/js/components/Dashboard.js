@@ -24,6 +24,7 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props.dashboard);
         this.props.dashboard.windows[0].notes.map(note => {
             this.addNoteFromDb(note.id, note.text);
         });
@@ -50,11 +51,12 @@ class Dashboard extends Component {
     }
 
     addCounterFromDb = (id, title, date) => {
+        console.log('Couynter add');
         const key = Math.random();
         const newCounter = {
             key: key,
             template: <Counter widgetKey={key} deleteWidget={this.deleteWidget} title={title} date={date}/>,
-            type: 'Note',
+            type: 'DayCounter',
             id: id
         };
         this.updateStateWithWidget(newCounter);
@@ -158,6 +160,7 @@ class Dashboard extends Component {
         auth2.signOut().then(function () {
             console.log('User signed out.');
         });
+        window.location.reload();
     }
 
     render() {

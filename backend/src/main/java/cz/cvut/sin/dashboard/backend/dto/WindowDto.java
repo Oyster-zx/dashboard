@@ -11,7 +11,7 @@ public class WindowDto {
     @JsonProperty("notes")
     private Set<NoteDto> notes;
 
-    @JsonProperty("counter")
+    @JsonProperty("counters")
     private Set<DayCounterDto> dayCounters;
 
 
