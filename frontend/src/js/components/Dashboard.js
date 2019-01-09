@@ -94,7 +94,7 @@ class Dashboard extends Component {
             type: 'Todo'
         };
 
-        this.sendData(newTodo);
+        this.updateStateWithWidget(newTodo);
     }
 
     createTasks = (item) => {
